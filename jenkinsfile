@@ -1,0 +1,18 @@
+pipeline{
+    agent {
+        label 'jenkinsci'
+    }
+
+    stages {
+        stage("checkout from github") {
+            steps { 
+                git url:"https://github.com/VishalKumar8/vishal-git-docker.git", branch:"main"
+            }
+        }
+        stage("create docker image") {
+            steps { 
+                sh "docker build -t mypy:latest ."
+            }
+        }
+    }
+}
